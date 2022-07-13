@@ -1,6 +1,7 @@
 
 import './App.css';
-import Main from './components/tours/Main';
+import Main from './components/menu/Main';
+// import Main from './components/tours/Main';
 
 function App() {
   return (
