@@ -1,13 +1,22 @@
 
-import './App.css';
-import Main from './components/store/Main';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/cocktails/Navbar";
+import Home from "./components/cocktails/pages/Home";
+import About from "./components/cocktails/pages/About";
+import Error from "./components/cocktails/pages/Error";
 
-
+import "./App.css";
 function App() {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </Router>
   );
 }
 
