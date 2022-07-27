@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import CockTailList from "../CockTailList";
+import SearchForm from "../SearchForm";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <main>
+      <SearchForm />
+      <CockTailList />
+    </main>
+  );
+};
 
-export default Home 
+export default Home;
