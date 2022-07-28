@@ -1,10 +1,11 @@
 import React from "react";
-import Main from "./components/pagination/Main";
+
 import "./App.css";
+import Main from "./components/dark-mode/Main";
 function App() {
   return (
     <div>
-      <Main />
+     <Main />
     </div>
   );
 }
