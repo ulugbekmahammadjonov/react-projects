@@ -1,11 +1,12 @@
 import React from "react";
 
 import "./App.css";
-import Main from "./components/dark-mode/Main";
+import Main from "./components/hacker-news/Main";
+;
 function App() {
   return (
     <div>
-     <Main />
+     <Main/>
     </div>
   );
 }
