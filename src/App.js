@@ -1,5 +1,6 @@
 import React from "react";
-import Main from "./components/quiz/Main";
+import Main from "./components/search-github-users/Main";
+
 import "./App.css";
 function App() {
   return (
