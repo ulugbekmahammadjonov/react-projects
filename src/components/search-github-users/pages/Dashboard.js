@@ -1,5 +1,5 @@
 import React from "react";
-import { Info, Repos, User, Search, Navbar } from "../components";
+import { Info, Repos, User, Search, Navbar } from "../component";
 import loadingImage from "../images/preloader.gif";
 
 import { GithubContext } from "../context/context";
