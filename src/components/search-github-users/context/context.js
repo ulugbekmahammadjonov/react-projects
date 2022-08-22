@@ -2,7 +2,7 @@ import React, { useState, useEffect, Children } from "react";
 import axios from "axios";
 import mockUser from "./mockData/mockUser";
 import mockRepos from "./mockData/mockRepos";
-import mockFollowers from "./mockData/mockFollowers";
+import mockFollowers from "./mockData/mockFollower";
 
 const rootUrl = "https://api.github.com";
 
@@ -13,7 +13,7 @@ const GithubProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState(mockUser);
   const [repos, setRepos] = useState(mockRepos);
   const [followers, setFollowers] = useState(mockFollowers);
-  const [requests, serRequests] = useState(0);
+  const [requests, setRequests] = useState(0);
 
   const [error, setError] = useState({ show: false, msg: "" });
 
@@ -48,15 +48,45 @@ const GithubProvider = ({ children }) => {
     } else {
       toggleError(true, " Bunday user mavjud emas ");
     }
+    checkRequests();
     setIsLoading(false);
+  };
+
+  const checkRequests = () => {
+    axios(`${rootUrl}/rate_limit`)
+      .then(({ data }) => {
+        let {
+          rate: { remaining },
+        } = data;
+        setRequests(remaining);
+        if (remaining === 0) {
+          toggleError(true, "kechirasiz limit tugadi");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   function toggleError(show = false, msg = "") {
     setError({ show, msg });
   }
+  useEffect(checkRequests, []);
+
+  useEffect(() => {
+    searchGithubUser("nurmukhamedov");
+  }, []);
 
   return (
-    <GithubContext.Provider value={{ githubUser, repos, followers, isLoading }}>
+    <GithubContext.Provider
+      value={{
+        githubUser,
+        repos,
+        followers,
+        requests,
+        error,
+        searchGithubUser,
+        isLoading,
+      }}
+    >
       {children}
     </GithubContext.Provider>
   );
